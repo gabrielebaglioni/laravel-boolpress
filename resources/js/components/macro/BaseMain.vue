@@ -1,19 +1,17 @@
 <template>
   <main class="main">
-   <div>
-     <PostsSection/>
-   </div>
+   <router-link></router-link>
    
   </main>
 </template>
 
 <script>
-import PostsSection  from '../sections/PostsSection.vue'
+// import PostsSection  from '../sections/PostsSection.vue'
 export default {
    name: 'BaseMian',
-   components : {
-      PostsSection,
-   }
+  //  components : {
+  //     PostsSection,
+  //  }
 }
 </script>
 
