@@ -6,12 +6,11 @@
 </template>
 
 <script>
-// import PostsSection  from '../sections/PostsSection.vue'
+
 export default {
    name: 'BaseMian',
-  //  components : {
-  //     PostsSection,
-  //  }
+  
+
 }
 </script>
 
