@@ -1,0 +1,106 @@
+-----------------------------
+PASSAGGI
+
+obbiettivo: creare scaffolding per front-office e back-office
+
+- creo la repo
+
+- apro su vscode
+
+- creo il progetto laravel
+
+- creo il database vuoto su PhpMyAdmin
+
+- installo lo scaffolding composer require laravel/ui:^2.4
+
+- php artisan ui vue --auth
+
+- npm install
+
+- npm run dev
+
+- collego il database e metto la password nel .env
+
+- php artisan migrate
+
+- php artisan serve
+
+- ora dovrebbe esserci il sito funzionante con login 
+
+- ora dividiamo front office da backoffice
+
+- partiamo dalle rotte
+
+- organizziamo i controller per il backoffice
+
+- php artisan make:controller Admin/HomeController
+
+-prendo la classe all interno di HomeController pubblico e lo copio in HomeController admin
+
+- in modo da avere una separazione tra zona Admin e zona pubblica
+
+- togliamo il costruttore
+
+- definiamo le rotte
+
+- nel web.php
+ 
+Route::middleware('auth')
+    ->namespace('Admin')
+    ->name('admin')
+    ->prefix('admin')
+    ->group(function(){
+        Route::get('/home', 'HomeController@index')->name('home');
+    });
+
+
+modifichiamo nel file RouteServiceProvider.php in providers la costante home cambiandola in /admin/home
+
+poi creo la rotta per gli utenti loggati
+
+vado in welcome.blade.php al posto della funzione url usiamo route e inseriamo la rotta admin.home
+
+dividiamo in cartelle le nostre views
+
+creiamo le cartelle guest e admin nella cartella views
+
+spostiamo l'home.blade nella cartella admin
+
+cambiamo l'indirizzo nel HomeController
+
+creiamo il file Home.Blade in guest
+
+definisco una rotta any in web.php
+
+Route::any('{any?}', function() {
+    return view('guest.home);
+})->where('any', '.*');
+
+poi creiamo i file front.js e front.scss
+nel file front.js ci includiamo vue che troviamo in app.js
+
+ci importiamo un componente che andremo a creare nella cartella views (nella cartella js) e ci creiamo il file App.vue nella cartella views
+
+ci importiamo il nostro app.vue in front.js
+import App from './views/App.vue';
+
+e scriviamo il rendering che troviamo in app.js in front.js
+const app = new Vue({
+    el: '#app',
+    render: h => {App},
+});
+
+nel webpack.mix inserisco i due file js e sass del front
+mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/front.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/front.scss', 'public/css');
+
+ora scrivo il comando 
+npm run watch
+
+vado nel home.blade del guest e mi linko i fogli di stile
+<link rel="stylesheet" href="{{asset('css/front.css')}}">
+<script src="{{asset('js/front.js')}}"></script>
+
+scrivo il componente nel App.vue
