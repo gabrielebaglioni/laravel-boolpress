@@ -1,14 +1,23 @@
 <template>
-   <div class="container">
+  <header>
+    <div class="container">
         <div class="row">
             <div class="col">
                 <h1>Boolpress</h1>
-                <div>
-                  <a href="/admin/home">area privata</a>
-                </div>
+            </div>
+            <div class="col">
+              <nav>
+                <ul>
+                  <li><router-link :to="{ name: 'home' }">Home</router-link></li>
+                  <li><router-link :to="{ name: 'about' }">Chi Siamo</router-link></li>
+                  <li><router-link :to="{ name: 'categories' }">Categorie</router-link></li>
+                  <li><a href="/admin/home">Area Riservata</a></li>
+                </ul>
+              </nav>
             </div>
         </div>
-   </div>        
+    </div>
+  </header>
 </template>
 
 <script>
@@ -17,6 +26,17 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+ 
+ .row{
+  display: flex;
+  justify-content: space-evenly;
+ }
+ li{
+  list-style: none;
+  margin-right: .625rem;
+ }
+ ul{
+  display: flex;
+ }
 </style>
