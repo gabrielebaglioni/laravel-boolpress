@@ -1,6 +1,6 @@
 <template>
   <footer>
-     <div>
+     <div class="footer">
       <h5>Made by Frank with ❤️</h5>
      </div>
   </footer>
@@ -12,6 +12,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.footer{
+   text-align: center;
+}
 </style>
