@@ -11,7 +11,6 @@ import SingleCategory from "./pages/SingleCategory";
 import SingleTag from "./pages/SingleTag";
 import Page404 from "./pages/Page404";
 
-
 const router = new VueRouter({
     mode: "history",
     routes: [
