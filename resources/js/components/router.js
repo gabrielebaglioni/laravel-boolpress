@@ -6,7 +6,9 @@ Vue.use(VueRouter);
 import Home from "./pages/Home";
 import About from "./pages/About"; 
 import SinglePost from "./pages/SinglePost";
+import Categories from "./pages/Categories";
 import Page404 from "./pages/Page404";
+
 
 const router = new VueRouter({
     mode: "history",
@@ -26,6 +28,11 @@ const router = new VueRouter({
          name: "single-post",
          component: SinglePost,
         },
+        {
+         path: "/category",
+         name: "categories",
+         component: Categories,
+     },
         {
          path: "/*",
          name: "page-404",

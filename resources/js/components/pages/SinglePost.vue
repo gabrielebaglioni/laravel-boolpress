@@ -31,8 +31,8 @@ export default {
             .then((response) => {
                 this.post = response.data;
             })
-            .catch((e) => {
-                // redirect alla pagina 404
+            .catch((er) => {
+                
                 this.$router.push({name: 'page-404'});
             });
     }
