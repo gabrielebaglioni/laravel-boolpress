@@ -5,8 +5,9 @@ Vue.use(VueRouter);
 
 import Home from "./pages/Home";
 import About from "./pages/About"; 
-import Page404 from "./pages/Page404";
 import SinglePost from "./pages/SinglePost";
+import Page404 from "./pages/Page404";
+
 const router = new VueRouter({
     mode: "history",
     routes: [
