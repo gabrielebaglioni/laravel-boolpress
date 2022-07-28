@@ -2115,7 +2115,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'SingleTag'
+  name: 'SingleTag',
+  data: function data() {
+    return {
+      tag: null
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get("/api/tags/".concat(this.$route.params.slug)).then(function (resp) {
+      _this.tag = resp.data;
+    });
+  }
 });
 
 /***/ }),
@@ -2576,15 +2588,25 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
+  return _vm.tag ? _c("div", {
+    staticClass: "container"
+  }, [_c("h1", [_vm._v(_vm._s(_vm.tag.name))]), _vm._v(" "), _vm.tag.posts.length > 0 ? [_c("h3", [_vm._v("Lista post associati:")]), _vm._v(" "), _c("ul", _vm._l(_vm.tag.posts, function (post) {
+    return _c("li", {
+      key: post.id
+    }, [_c("router-link", {
+      attrs: {
+        to: {
+          name: "single-post",
+          params: {
+            slug: post.slug
+          }
+        }
+      }
+    }, [_vm._v(_vm._s(post.title))])], 1);
+  }), 0)] : _vm._e()], 2) : _vm._e();
 };
 
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", [_c("h1", [_vm._v("SingleTag")])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
