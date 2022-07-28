@@ -150,7 +150,13 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)
-    {
+    {   if($post->user_id !== Auth::id()) {
+        abort(403);
+    }
+
+        if($post->image) {
+        Storage::delete($post->image);
+    }
         $post->delete();
 
         return redirect()->route('admin.posts.index');
