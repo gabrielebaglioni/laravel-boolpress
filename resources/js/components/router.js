@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import About from "./pages/About"; 
 import SinglePost from "./pages/SinglePost";
 import Categories from "./pages/Categories";
+import SingleCategory from "./pages/SingleCategory";
 import Page404 from "./pages/Page404";
 
 
@@ -32,7 +33,13 @@ const router = new VueRouter({
          path: "/category",
          name: "categories",
          component: Categories,
-     },
+        },
+        {
+         path: "/category/:slug",
+         name: "single-category",
+         component: SingleCategory,
+        },
+        
         {
          path: "/*",
          name: "page-404",
