@@ -9,6 +9,7 @@ use App\Post;
 use App\Category;
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -52,6 +53,8 @@ class PostController extends Controller
             'published' => 'sometimes|accepted',
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'nullable|exists:tags,id',
+            'image' => 'nullable|image|max:500'
+            
         ]);
         // prendo i dati dalla request e creo il post
         $data = $request->all();
@@ -62,6 +65,9 @@ class PostController extends Controller
 
         $newPost->published = isset($data['published']); // true o false
         $newPost->user_id = Auth::id();
+        if(isset($data['image'])) {
+            $newPost->image = Storage::put('uploads', $data['image']);
+        }
         $newPost->save();
         // redirect alla pagina del post appena creato
         if(isset($data['tags'])){
