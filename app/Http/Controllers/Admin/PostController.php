@@ -134,6 +134,14 @@ class PostController extends Controller
 
         $post->published = isset($data['published']); // true o false
 
+        if(isset($data['image'])) {
+            if($post->image) {
+                Storage::delete($post->image);
+            }
+
+            $post->image = Storage::put('uploads', $data['image']);
+        }
+
         $post->save();
 
         $tags = isset($data['tags']) ? $data['tags'] : [];
